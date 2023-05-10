@@ -36,6 +36,7 @@ class App
         // Body der HTML-Seite
         $this->view
             ->begin(Elements::BODY,["lang"=> "de"])
+            ->write("<h1>Dies ist eine Überschrift</h1>")
             ->write("Dies ist ein Text im Body!")
             ->end(Elements::BODY)
             ->end(Elements::HTML)
