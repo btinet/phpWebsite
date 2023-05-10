@@ -1,6 +1,5 @@
 <?php
 
-namespace view;
 
 use view\html\Elements;
 use view\html\View;

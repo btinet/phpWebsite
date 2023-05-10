@@ -10,7 +10,7 @@ if(!defined('BASEDIR'))
     define('BASEDIR',dirname(__FILE__) . DS);
 
 // Basisklasse importieren
-require(BASEDIR . 'view' . DS . 'App.php');
+require(BASEDIR . 'App.php');
 
 // Verzeichnisse für den automatischen Import definieren
 set_include_path(get_include_path()
@@ -31,4 +31,4 @@ elseif(!in_array('spl_autoload',$spl_funcs))
     spl_autoload_register('spl_autoload');
 
 // Basisklasse instanziieren
-$app = new view\App();
+$app = new App();
