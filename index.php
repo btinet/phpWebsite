@@ -1,34 +1,36 @@
 <?php
 
+// Konfiguration der Basis-Klasse
+$bootstrap = 'App.php';
+
 // Konstanten definieren
-// Trennzeichen zwischen Ordnern (Windows: \ und Linux: / )
 if(!defined('DS'))
     define('DS',DIRECTORY_SEPARATOR);
-
-// Basisverzeichnis definieren
+if(!defined('PS'))
+    define('PS',PATH_SEPARATOR);
 if(!defined('BASEDIR'))
     define('BASEDIR',dirname(__FILE__) . DS);
 
-// Basisklasse importieren
-require(BASEDIR . 'App.php');
+// Basisklasse inkludieren
+require(BASEDIR . $bootstrap);
 
-// Verzeichnisse für den automatischen Import definieren
+// Suchpfade hinzufügen
 set_include_path(get_include_path()
-    . PATH_SEPARATOR . BASEDIR . 'controller' . DS
-    . PATH_SEPARATOR . BASEDIR . 'model' . DS
-    . PATH_SEPARATOR . BASEDIR . '' . DS
-    . PATH_SEPARATOR . BASEDIR . 'view' . DS
+    . PS . BASEDIR . 'controller' . DS
+    . PS . BASEDIR . 'model' . DS
+    . PS . BASEDIR . '' . DS
+    . PS . BASEDIR . 'view' . DS
 );
 
-// Endungen für zu importierende Dateien festlegen
+// Dateieindungen,nach denen gesucht werden soll, definieren
 spl_autoload_extensions('.php,.inc');
 
-// Funktion für den Autoimport registrieren
+// Autoload registrieren
 $spl_funcs = spl_autoload_functions();
-if($spl_funcs === false)
+if($spl_funcs == false)
     spl_autoload_register();
 elseif(!in_array('spl_autoload',$spl_funcs))
     spl_autoload_register('spl_autoload');
 
-// Basisklasse instanziieren
+// App starten
 $app = new App();
